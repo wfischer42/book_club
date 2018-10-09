@@ -1,3 +1,5 @@
+[![Waffle.io - Columns and their card count](https://badge.waffle.io/wfischer42/book_club.svg?columns=all)](https://waffle.io/wfischer42/book_club)
+
 # Book Club
 
 Backend Module 2 paired Rails project, weeks 2 and 3
