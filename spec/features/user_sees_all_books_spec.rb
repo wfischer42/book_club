@@ -42,9 +42,11 @@ describe 'book index' do
       expect(page).to have_current_path(books_path(direction: 'asc',
                                                    sort_by: 'avg_rating'))
 
+      within("#all-books") do
       expect(all(".book-title")[0]).to have_content("Dune")
       expect(all(".book-title")[1]).to have_content("Huckleberry Finn")
       expect(all(".book-title")[2]).to have_content("Pride and Prejudice")
+      end
     end
     it 'average rating descending' do
       visit '/books'
@@ -52,9 +54,11 @@ describe 'book index' do
 
       expect(page).to have_current_path(books_path(sort_by: 'avg_rating',
                                                    direction: 'desc'))
+      within("#all-books") do
       expect(all(".book-title")[0]).to have_content("Pride and Prejudice")
       expect(all(".book-title")[1]).to have_content("Huckleberry Finn")
       expect(all(".book-title")[2]).to have_content("Dune")
+      end
     end
     it 'page count ascending' do
       visit '/books'
@@ -63,9 +67,11 @@ describe 'book index' do
       expect(page).to have_current_path(books_path(sort_by: 'pages',
                                                    direction: 'asc'))
 
+      within("#all-books") do
       expect(all(".book-title")[0]).to have_content("Pride and Prejudice")
       expect(all(".book-title")[1]).to have_content("Huckleberry Finn")
       expect(all(".book-title")[2]).to have_content("Dune")
+      end
     end
     it 'page count descending' do
       visit '/books'
@@ -74,9 +80,11 @@ describe 'book index' do
       expect(page).to have_current_path(books_path(sort_by: 'pages',
                                                    direction: 'desc'))
 
+      within("#all-books") do
       expect(all(".book-title")[0]).to have_content("Dune")
       expect(all(".book-title")[1]).to have_content("Huckleberry Finn")
       expect(all(".book-title")[2]).to have_content("Pride and Prejudice")
+      end
     end
     it 'review count ascending' do
       visit '/books'
@@ -85,9 +93,11 @@ describe 'book index' do
       expect(page).to have_current_path(books_path(sort_by: 'rev_count',
                                                    direction: 'asc'))
 
+      within("#all-books") do
       expect(all(".book-title")[0]).to have_content("Dune")
       expect(all(".book-title")[1]).to have_content("Huckleberry Finn")
       expect(all(".book-title")[2]).to have_content("Pride and Prejudice")
+      end
     end
     it 'review count descending' do
       visit '/books'
@@ -96,9 +106,11 @@ describe 'book index' do
       expect(page).to have_current_path(books_path(sort_by: 'rev_count',
                                                    direction: 'desc'))
 
+     within("#all-books") do
       expect(all(".book-title")[0]).to have_content("Pride and Prejudice")
       expect(all(".book-title")[1]).to have_content("Huckleberry Finn")
       expect(all(".book-title")[2]).to have_content("Dune")
+      end
     end
   end
 end
