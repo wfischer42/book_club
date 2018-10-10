@@ -8,7 +8,7 @@ class Book < ApplicationRecord
   has_many :authors, through: :book_authors
 
   def self.with_avg_rating(sort_dir, sort_by)
-    books = select('books.*, avg(rating) AS avg_rating')
+    books = select('books.*, avg(rating) AS avg_rating, count(reviews) AS rev_count')
     .joins(:reviews)
     .group(:id, :book_id)
     if sort_dir && sort_by
