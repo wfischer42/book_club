@@ -4,6 +4,26 @@
 <%  @book.authors.each do |author|%>
   <%= author.name %>
 <% end %>
+
+<div id="book-stats">
+  Average Rating - <%= @book.average_rating %>
+  <% @book.top_3_reviews.each do |review| %>
+    <div class="top_review">
+      <%= review.title %>
+      Rating - <%= review.rating %>
+      <%= review.user.name %>
+    </div>
+  <% end %>
+
+  <% @book.bottom_3_reviews.each do |review| %>
+    <div class="bottom_review">
+      <%= review.title %>
+      Rating - <%= review.rating %>
+      <%= review.user.name %>
+    </div>
+  <% end %>
+</div>
+
 <%  @book.reviews.each do |review| %>
   <%= review.title %>
   <%= review.description %>
