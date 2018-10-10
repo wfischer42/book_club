@@ -15,6 +15,8 @@ describe 'book index' do
     book_3 = Book.create(title: "Pride and Prejudice", pages: 130, year: 1950)
     author = book_3.authors.create(name: "Jane Austen")
     book_3.reviews.create(title: "Awesome book!", description: "This book is super great!", rating: 5, user_id: user.id)
+    book_3.reviews.create(title: "Uh...", description: "I don't get it.", rating: 5, user_id: user.id)
+    book_3.reviews.create(title: "Best book evaarrr!", description: "This book is super great!", rating: 5, user_id: user.id)
     @books = [book_1, book_2, book_3]
   end
   it 'user sees all books' do
@@ -60,7 +62,7 @@ describe 'book index' do
 
       expect(page).to have_current_path(books_path(sort_by: 'pages',
                                                    direction: 'asc'))
-                                                   
+
       expect(all(".book-title")[0]).to have_content("Pride and Prejudice")
       expect(all(".book-title")[1]).to have_content("Huckleberry Finn")
       expect(all(".book-title")[2]).to have_content("Dune")
@@ -75,6 +77,28 @@ describe 'book index' do
       expect(all(".book-title")[0]).to have_content("Dune")
       expect(all(".book-title")[1]).to have_content("Huckleberry Finn")
       expect(all(".book-title")[2]).to have_content("Pride and Prejudice")
+    end
+    it 'review count ascending' do
+      visit '/books'
+      click_on 'review-count-asc'
+
+      expect(page).to have_current_path(books_path(sort_by: 'rev_count',
+                                                   direction: 'asc'))
+
+      expect(all(".book-title")[0]).to have_content("Dune")
+      expect(all(".book-title")[1]).to have_content("Huckleberry Finn")
+      expect(all(".book-title")[2]).to have_content("Pride and Prejudice")
+    end
+    it 'review count descending' do
+      visit '/books'
+      click_on 'review-count-desc'
+
+      expect(page).to have_current_path(books_path(sort_by: 'rev_count',
+                                                   direction: 'desc'))
+
+      expect(all(".book-title")[0]).to have_content("Pride and Prejudice")
+      expect(all(".book-title")[1]).to have_content("Huckleberry Finn")
+      expect(all(".book-title")[2]).to have_content("Dune")
     end
   end
 end
