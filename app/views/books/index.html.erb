@@ -1,10 +1,12 @@
+<a href="/books?direction=desc&sort_by=avg_rating">▼</a>
+<a href="/books?direction=asc&sort_by=avg_rating">▲</a>
 <% @books.each do |book| %>
-  <%= book.title %>
+  <div class="book-title"><%= book.title %></div>
   <%= book.pages %>
   <%= book.year %>
   <% book.authors.each do |author| %>
     <%= author.name %>
   <% end %>
-  <p>Average Rating: <%= book.average_rating %></p>
+  <p>Average Rating: <%= book.avg_rating %></p>
   <p>Total Reviews: <%= book.reviews.count %></p>
 <% end %>
