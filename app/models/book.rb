@@ -16,4 +16,16 @@ class Book < ApplicationRecord
     end
     books
   end
+
+  def top_3_reviews
+    reviews.order(rating: :DESC).take(3)
+  end
+
+  def bottom_3_reviews
+    reviews.order(rating: :ASC).take(3)
+  end
+
+  def average_rating
+    reviews.average(:rating)
+  end
 end
