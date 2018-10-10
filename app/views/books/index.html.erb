@@ -1,3 +1,36 @@
+<div id="top_3">
+  <% @books_top_3.each do |book| %>
+    <div class="book-title"><%= book.title %></div>
+    <%= book.pages %>
+    <%= book.year %>
+    <% book.authors.each do |author| %>
+      <%= author.name %>
+    <% end %>
+    <p>Average Rating: <%= book.avg_rating %></p>
+    <p>Total Reviews: <%= book.reviews.count %></p>
+  <% end %>
+</div>
+
+<div id="bottom_3">
+  <% @books_bottom_3.each do |book| %>
+    <div class="book-title"><%= book.title %></div>
+    <%= book.pages %>
+    <%= book.year %>
+    <% book.authors.each do |author| %>
+      <%= author.name %>
+    <% end %>
+    <p>Average Rating: <%= book.avg_rating %></p>
+    <p>Total Reviews: <%= book.reviews.count %></p>
+  <% end %>
+</div>
+
+<div id="top_reviewers">
+  <% @top_3_reviewers.each do |reviewer| %>
+    <div class="reviewer-name"><%= reviewer.name %></div>
+    Total Reviews: <%= reviewer.review_count  %>
+  <% end %>
+</div>
+
 <select>
   <option><a id="avg-rating-desc" href="/books?direction=desc&sort_by=avg_rating">Average Rating ▼</a></option>
   <option><a id="avg-rating-asc" href="/books?direction=asc&sort_by=avg_rating">Average Rating ▲</a></option>
@@ -6,13 +39,15 @@
   <option><a id="review-count-desc" href="/books?direction=desc&sort_by=rev_count">Total Reviews ▼</a></option>
   <option><a id="review-count-asc" href="/books?direction=asc&sort_by=rev_count">Total Reviews ▲</a></option>
 </select>
-<% @books.each do |book| %>
-  <div class="book-title"><%= book.title %></div>
-  <%= book.pages %>
-  <%= book.year %>
-  <% book.authors.each do |author| %>
-    <%= author.name %>
+<div id="all-books">
+  <% @books.each do |book| %>
+    <div class="book-title"><%= book.title %></div>
+    <%= book.pages %>
+    <%= book.year %>
+    <% book.authors.each do |author| %>
+      <%= author.name %>
+    <% end %>
+    <p>Average Rating: <%= book.avg_rating %></p>
+    <p>Total Reviews: <%= book.reviews.count %></p>
   <% end %>
-  <p>Average Rating: <%= book.avg_rating %></p>
-  <p>Total Reviews: <%= book.reviews.count %></p>
-<% end %>
+</div>
