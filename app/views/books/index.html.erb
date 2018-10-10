@@ -1,5 +1,9 @@
-<a href="/books?direction=desc&sort_by=avg_rating">▼</a>
-<a href="/books?direction=asc&sort_by=avg_rating">▲</a>
+<select>
+  <option><a id="avg-rating-desc" href="/books?direction=desc&sort_by=avg_rating">Average Rating ▼</a></option>
+  <option><a id="avg-rating-asc" href="/books?direction=asc&sort_by=avg_rating">Average Rating ▲</a></option>
+  <option><a id="page-count-desc" href="/books?direction=desc&sort_by=pages">Page Count ▼</a></option>
+  <option><a id="page-count-asc" href="/books?direction=asc&sort_by=pages">Page Count ▲</a></option>
+</select>
 <% @books.each do |book| %>
   <div class="book-title"><%= book.title %></div>
   <%= book.pages %>
