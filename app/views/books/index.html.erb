@@ -31,14 +31,31 @@
   <% end %>
 </div>
 
-<select>
+<form action="/books/new" method="get">
+  <input type="submit" id="new-book" value="Add a New Book"></input>
+</form>
+
+<div class="dropdown">
+  <button class="dropbtn">Sort</button>
+  <div class="dropdown-content">
+    <a id="avg-rating-desc" href="/books?direction=desc&sort_by=avg_rating">Average Rating ▼</a>
+    <a id="avg-rating-asc" href="/books?direction=asc&sort_by=avg_rating">Average Rating ▲</a>
+    <a id="page-count-desc" href="/books?direction=desc&sort_by=pages">Page Count ▼</a>
+    <a id="page-count-asc" href="/books?direction=asc&sort_by=pages">Page Count ▲</a>
+    <a id="review-count-desc" href="/books?direction=desc&sort_by=rev_count">Total Reviews ▼</a>
+    <a id="review-count-asc" href="/books?direction=asc&sort_by=rev_count">Total Reviews ▲</a>
+  </div>
+</div>
+
+<!-- <select>
   <option><a id="avg-rating-desc" href="/books?direction=desc&sort_by=avg_rating">Average Rating ▼</a></option>
   <option><a id="avg-rating-asc" href="/books?direction=asc&sort_by=avg_rating">Average Rating ▲</a></option>
   <option><a id="page-count-desc" href="/books?direction=desc&sort_by=pages">Page Count ▼</a></option>
   <option><a id="page-count-asc" href="/books?direction=asc&sort_by=pages">Page Count ▲</a></option>
   <option><a id="review-count-desc" href="/books?direction=desc&sort_by=rev_count">Total Reviews ▼</a></option>
   <option><a id="review-count-asc" href="/books?direction=asc&sort_by=rev_count">Total Reviews ▲</a></option>
-</select>
+</select> -->
+
 <div id="all-books">
   <% @books.each do |book| %>
     <div class="book-title"><%= book.title %></div>
