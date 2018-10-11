@@ -40,6 +40,12 @@ describe 'book show page' do
       expect(page).to have_content(review.user.name)
     end
   end
+  it 'has link to add a new review' do
+    visit "/books/#{@book.id}"
+    click_on "add a new review"
+
+    expect(page).to have_current_path(new_book_review_path(book_id: @book.id))
+  end
 
   describe 'statistics' do
     it 'user sees top 3 reviews' do

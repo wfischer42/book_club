@@ -5,6 +5,8 @@
   <%= author.name %>
 <% end %>
 
+<%= link_to "add a new review", new_book_review_path(@book) %>
+
 <div id="book-stats">
   Average Rating - <%= @book.average_rating %>
   <% @book.top_3_reviews.each do |review| %>
