@@ -1,7 +1,11 @@
-<form id='new-book-form' method="post" action="/books">
-  <input type="text" id='title' placeholder="title" name="book[title]" />
-  <input type="number" id='pages' placeholder="number of pages" name="book[pages]" />
-  <input type="text" id='authors' placeholder="author(s), separated by commas" name="book[authors]" />
-  <input type="number" id='year' placeholder="publication year" name="book[year]" />
-  <input type="submit" id='submit' value="Submit" />
-</form>
+Add a New Book
+<%= form_for @book do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title, placeholder: "Title" %>
+  <%= f.label :pages %>
+  <%= f.number_field :pages, min: 1%>
+  <%= f.label :year %>
+  <%= f.number_field :year, max: Date.today.year%>
+  <input type="text" name="book[authors]" placeholder="Authors, separated by commas">
+  <%= f.submit %>
+<% end %>
