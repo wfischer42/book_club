@@ -18,6 +18,8 @@ describe 'book show page' do
   it 'user sees only one book' do
     visit "/books/#{@book.id}"
 
+    expect(page).to have_current_path("/books/#{@book.id}")
+
     expect(page).to have_content(@book.title)
     expect(page).not_to have_content(@other_book.title)
   end

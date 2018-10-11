@@ -1,0 +1,11 @@
+Add a New Book
+<%= form_for @book do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title, placeholder: "Title" %>
+  <%= f.label :pages %>
+  <%= f.number_field :pages, min: 1%>
+  <%= f.label :year %>
+  <%= f.number_field :year, max: Date.today.year%>
+  <input type="text" name="book[authors]" placeholder="Authors, separated by commas">
+  <%= f.submit %>
+<% end %>

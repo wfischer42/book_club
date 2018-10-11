@@ -6,7 +6,7 @@ describe 'book index' do
     author = book_1.authors.create(name: "Mark Twain")
     user = User.create(name: "Joe Shmoe")
     book_1.reviews.create(title: "Awesome book!", description: "This book is totally awesome", rating: 5, user_id: user.id)
-    book_1.reviews.create(title: "Crappiest book", description: "This book is terrible", rating: 1, user_id: user.id)
+    book_1.reviews.create(title: "Crappiest book", description: "This book is terrible", rating: 1, user: user )
 
     book_2 = Book.create(title: "Dune", pages: 900, year: 1950)
     author = book_2.authors.create(name: "Frank Herbert")
@@ -112,5 +112,11 @@ describe 'book index' do
       expect(all(".book-title")[2]).to have_content("Dune")
       end
     end
+  end
+  it 'has link to create a new book' do
+    visit '/books'
+    click_on 'new-book'
+
+    expect(page).to have_current_path('/books/new')
   end
 end
