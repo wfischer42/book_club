@@ -1,0 +1,18 @@
+<%= @book.title %>
+<%= @book.pages %>
+<%= @book.year %>
+<%  @book.authors.each do |author|%>
+  <%= author.name %>
+<% end %>
+
+<%= form_for [@book, @review] do |f| %>
+<%= f.label :user_name  %>
+<input type="text" name="user_name" placeholder="your name" />
+<%= f.label :title %>
+<%= f.text_field :title %>
+<%= f.label :description  %>
+<%= f.text_field :description  %>
+<%= f.label :rating  %>
+<%= f.number_field :rating, min: 1, max: 5  %>
+<%= f.submit %>
+<% end %>
