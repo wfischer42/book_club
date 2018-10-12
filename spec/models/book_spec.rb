@@ -12,10 +12,6 @@ describe Book, type: :model do
     it { should have_many(:users).through(:reviews)}
     it { should have_many(:book_authors) }
     it { should have_many(:authors).through(:book_authors) }
-  end
-
-  describe 'Instance Methods' do
-    
 
   end
 end

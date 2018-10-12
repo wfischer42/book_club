@@ -35,4 +35,8 @@ class Book < ApplicationRecord
     end
     list.compact
   end
+
+  def best_review
+    reviews.order(rating: :DESC).first
+  end
 end
