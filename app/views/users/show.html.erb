@@ -1,0 +1,11 @@
+<div id="user-info">
+  <%= @user.name %>
+    <div id="reviews-block">
+      <% @user.reviews.each do |review| %>
+        <%= review.title %>
+        <%= review.description %>
+        <%= review.rating %>
+      <% end %>
+    <div>
+  </div>
+</div>
