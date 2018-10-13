@@ -1,10 +1,14 @@
 <div id="user-info">
   <%= @user.name %>
     <div id="reviews-block">
+      <a href="<%= @user.id %>?sort_order=desc">Newest First</a>
+      <a href="<%= @user.id %>?sort_order=asc">Oldest First</a>
       <% @user.reviews.each do |review| %>
-        <%= review.title %>
-        <%= review.description %>
-        <%= review.rating %>
+        <div class="review">
+          <%= review.title %>
+          <%= review.description %>
+          <%= "Rating: #{review.rating}" %>
+        </div>
       <% end %>
     <div>
   </div>
