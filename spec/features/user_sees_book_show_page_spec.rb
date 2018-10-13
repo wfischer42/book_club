@@ -48,6 +48,15 @@ describe 'book show page' do
 
     expect(page).to have_current_path(new_book_review_path(book_id: @book.id))
   end
+  it 'has link to go to author show page' do
+    visit book_path(@book)
+
+    within("#book-info") do
+      click_on @book.authors[0].name
+    end
+
+    expect(page).to have_current_path(author_path(@book.authors[0]))
+  end
 
   it 'has link to user show page' do
     visit book_path(@book)

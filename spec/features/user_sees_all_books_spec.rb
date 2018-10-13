@@ -142,5 +142,29 @@ describe 'book index' do
       click_on @books[0].users[0].name
     end
     expect(page).to have_current_path(user_path(@books[0].users[0]))
+  end 
+  it 'has links to authors show page' do
+    visit books_path
+
+    within("#top_3") do
+      click_on @books[0].authors[0].name
+    end
+
+    expect(page).to have_current_path(author_path(@books[0].authors[0]))
+
+    visit books_path
+
+    within("#bottom_3") do
+      click_on @books[0].authors[0].name
+    end
+
+    expect(page).to have_current_path(author_path(@books[0].authors[0]))
+
+    visit books_path
+
+    within("#all-books") do
+      click_on @books[0].authors[0].name
+    end
+    expect(page).to have_current_path(author_path(@books[0].authors[0]))
   end
 end

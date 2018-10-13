@@ -6,7 +6,7 @@
     <%= book.pages %>
     <%= book.year %>
     <% book.authors.each do |author| %>
-      <%= author.name %>
+    <%= link_to author.name, author_path(author) %>
     <% end %>
     <p>Average Rating: <%= book.avg_rating %></p>
     <p>Total Reviews: <%= book.reviews.count %></p>
@@ -21,7 +21,7 @@
     <%= book.pages %>
     <%= book.year %>
     <% book.authors.each do |author| %>
-      <%= author.name %>
+    <%= link_to author.name, author_path(author) %>
     <% end %>
     <p>Average Rating: <%= book.avg_rating %></p>
     <p>Total Reviews: <%= book.reviews.count %></p>
@@ -70,7 +70,7 @@
     <%= book.pages %>
     <%= book.year %>
     <% book.authors.each do |author| %>
-      <%= author.name %>
+      <%= link_to author.name, author_path(author) %>
     <% end %>
     <p>Average Rating: <%= book.avg_rating %></p>
     <p>Total Reviews: <%= book.reviews.count %></p>

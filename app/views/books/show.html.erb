@@ -1,9 +1,13 @@
-<%= @book.title %>
-<%= @book.pages %>
-<%= @book.year %>
-<%  @book.authors.each do |author|%>
-  <%= author.name %>
-<% end %>
+<div id="book-info">
+  <%= @book.title %>
+  <%= @book.pages %>
+  <%= @book.year %>
+  <%  @book.authors.each do |author|%>
+    <%= link_to author.name, author_path(author) %>
+  <% end %>
+</div>
+
+<%= link_to "Delete", book_path(@book), method: :delete, data: {confirm: "Really delete the review?"} %>
 
 <%= link_to "add a new review", new_book_review_path(@book) %>
 
