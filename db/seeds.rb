@@ -44,14 +44,14 @@ until @authors.count == 0
   new_book = Book.create(title: Faker::Book.unique.title, pages: rand(97..800), year: rand(1910..2018), authors: authors)
 end
 
-30.times do
+60.times do
   User.create(name: Faker::FunnyName.unique.two_word_name)
 end
 
 User.all.each do |user|
-  number_of_reviews = rand(1..5)
+  number_of_reviews = rand(3..15)
   number_of_reviews.times do
-    book = Book.all.sample
+    book = Book.all.shuffle.pop
     title = Faker::Lorem.sentence(1, true, 3)
     description = Faker::Lorem.paragraph(2, true, 3)
     review = user.reviews.create(title: title, description: description, book: book, rating: rand(1..5))
