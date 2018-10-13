@@ -14,7 +14,7 @@ Books:
     <%= book.best_review.title %>
     <%= book.best_review.description %>
     <%= book.best_review.rating %>
-    <%= book.best_review.user.name %>
+    <%= link_to book.best_review.user.name, user_path(book.best_review.user) %>
     <% end  %>
 <% end %>
 </div>

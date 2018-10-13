@@ -13,7 +13,9 @@
     <div class="top_review">
       <%= review.title %>
       Rating - <%= review.rating %>
-      <%= review.user.name %>
+      <div id= "top-review-<%= review.id %>">
+        <%=  link_to review.user.name, user_path(review.user) %>
+      </div>
     </div>
   <% end %>
 
@@ -21,7 +23,9 @@
     <div class="bottom_review">
       <%= review.title %>
       Rating - <%= review.rating %>
-      <%= review.user.name %>
+      <div id= "bottom-review-<%= review.id %>">
+        <%= link_to review.user.name, user_path(review.user) %>
+      </div>
     </div>
   <% end %>
 </div>
@@ -30,5 +34,8 @@
   <%= review.title %>
   <%= review.description %>
   <%= review.rating %>
-  <%= review.user.name %>
+  binding.pry
+  <div id="all-reviews-<%= review.id %>">
+    <%= link_to review.user.name, user_path(review.user) %>
+  </div>
 <% end %>
