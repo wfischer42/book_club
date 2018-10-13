@@ -3,7 +3,7 @@
 Books:
 <div id="author-books">
 <% @author.books.each do |book| %><br>
-  Title: <%= book.title %>
+  Title:<%= link_to book.title, book_path(book) %>
   Number of Pages: <%= book.pages %>
   Year Published: <%= book.year %>
   Other Authors:

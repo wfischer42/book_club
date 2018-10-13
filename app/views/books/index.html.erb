@@ -1,6 +1,7 @@
 <div id="top_3">
   <% @books_top_3.each do |book| %>
-    <div class="book-title"><%= book.title %></div>
+    <div class="book-title">
+    <%= book.title %></div>
     <%= book.pages %>
     <%= book.year %>
     <% book.authors.each do |author| %>
@@ -58,7 +59,9 @@
 
 <div id="all-books">
   <% @books.each do |book| %>
-    <div class="book-title"><%= book.title %></div>
+    <div class="book-title">
+      <%= link_to book.title, book_path(book) %>
+    </div>
     <%= book.pages %>
     <%= book.year %>
     <% book.authors.each do |author| %>

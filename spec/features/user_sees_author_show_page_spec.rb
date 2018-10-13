@@ -80,4 +80,15 @@ describe 'author show page' do
     expect(page).to have_content(book_1.reviews[1].title)
     expect(page).not_to have_content(book_1.reviews[2].title)
   end
+  it 'has link to books show page' do
+    author = Author.create(name: "J.K. Rowling")
+    book = author.books.create(title: "Lion, Witch, and Wardrobe", pages: 800, year: 1925)
+
+    visit author_path(author)
+
+    within("#author-books") do
+    click_on book.title
+  end
+    expect(page).to have_current_path(book_path(book))
+  end
 end
