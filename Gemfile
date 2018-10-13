@@ -40,6 +40,7 @@ group :development, :test do
   gem 'simplecov'
   gem 'pry'
   gem 'shoulda-matchers', '~> 3.1'
+  gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 end
 
 group :development do
