@@ -87,11 +87,24 @@ describe 'author show page' do
     visit author_path(author)
 
     within("#author-books") do
-    click_on book.title
-  end
+      click_on book.title
+    end
     expect(page).to have_current_path(book_path(book))
   end
+  
+  it 'has link to user show page' do
+    author = Author.create(name: "J.K. Rowling")
+    book = author.books.create(title: "Lion, Witch, and Wardrobe", pages: 800, year: 1925)
+    user = User.create(name: "Opinion Ated")
+    book.reviews.create(title: "Worst book!", description: "This book is awful", rating: 1, user_id: user.id)
+    
+    visit author_path(author)
 
+    within("#author-books") do
+      click_on user.name
+    end
+    expect(page).to have_current_path(user_path(user))
+  end
   it 'has link to authors show page' do
     author = Author.create(name: "J.K. Rowling")
     book = author.books.create(title: "Lion, Witch, and Wardrobe", pages: 800, year: 1925)
@@ -100,8 +113,8 @@ describe 'author show page' do
     visit author_path(author)
 
     within("#author-books") do
-    click_on book.authors[1].name
-  end
+      click_on book.authors[1].name
+    end
     expect(page).to have_current_path(author_path(author_2))
   end
 end

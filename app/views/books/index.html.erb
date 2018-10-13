@@ -30,7 +30,9 @@
 
 <div id="top_reviewers">
   <% @top_3_reviewers.each do |reviewer| %>
-    <div class="reviewer-name"><%= reviewer.name %></div>
+    <div class="reviewer-name">
+      <%= link_to reviewer.name, user_path(reviewer) %>
+    </div>
     Total Reviews: <%= reviewer.review_count  %>
   <% end %>
 </div>

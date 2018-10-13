@@ -135,6 +135,14 @@ describe 'book index' do
     end
     expect(page).to have_current_path(book_path(@books[0]))
   end
+  it 'has link to user show page' do
+    visit books_path
+
+    within("#top_reviewers") do
+      click_on @books[0].users[0].name
+    end
+    expect(page).to have_current_path(user_path(@books[0].users[0]))
+  end 
   it 'has links to authors show page' do
     visit books_path
 
