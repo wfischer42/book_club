@@ -31,7 +31,7 @@ class Book < ApplicationRecord
 
   def other_authors(author)
     list = authors.map do |a|
-      a.name if a.name != author.name
+      a if a.name != author.name
     end
     list.compact
   end
