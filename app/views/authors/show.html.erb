@@ -1,0 +1,20 @@
+<%= @author.name %>
+<br>
+Books:
+<div id="author-books">
+<% @author.books.each do |book| %><br>
+  Title: <%= book.title %>
+  Number of Pages: <%= book.pages %>
+  Year Published: <%= book.year %>
+  Other Authors:
+  <% book.other_authors(@author).each do |author| %>
+  <%= author %>
+  <% end  %>
+    <% if book.reviews.count > 0 %>
+    <%= book.best_review.title %>
+    <%= book.best_review.description %>
+    <%= book.best_review.rating %>
+    <%= book.best_review.user.name %>
+    <% end  %>
+<% end %>
+</div>
