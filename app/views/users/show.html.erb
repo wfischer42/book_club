@@ -8,6 +8,9 @@
           <%= review.title %>
           <%= review.description %>
           <%= "Rating: #{review.rating}" %>
+          <div id="delete-<%= review.id %>">
+          <%= link_to "Delete", user_review_path(review), method: :delete, data: {confirm: "Really delete the review?"} %>
+          </div>
         </div>
       <% end %>
     <div>
