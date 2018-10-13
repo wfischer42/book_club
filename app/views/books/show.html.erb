@@ -5,6 +5,8 @@
   <%= author.name %>
 <% end %>
 
+<%= link_to "Delete", book_path(@book), method: :delete, data: {confirm: "Really delete the review?"} %>
+
 <%= link_to "add a new review", new_book_review_path(@book) %>
 
 <div id="book-stats">

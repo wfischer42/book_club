@@ -41,4 +41,10 @@ class BooksController < ApplicationController
       Author.find_by(name: author_name) || Author.create(name: author_name)
     end
   end
+
+  def destroy
+    book = Book.find(params[:id])
+    book = Book.find(params[:id]).destroy
+    redirect_to(books_path)
+  end
 end
