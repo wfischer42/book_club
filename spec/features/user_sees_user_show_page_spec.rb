@@ -27,9 +27,32 @@ describe 'user show page' do
         @user.reviews.each do |review|
           expect(page).to have_content(review.title)
           expect(page).to have_content(review.description)
-          expect(page).to have_content(review.rating)
+          expect(page).to have_content("Rating: #{review.rating}")
         end
       end
     end
+  end
+  it 'visitor can sort user reviews chronologically ascending' do
+    visit user_path(@user)
+    click_on "Newest First"
+
+    expect(page).to have_current_path(user_path(@user, sort_order: 'desc'))
+    within '#reviews-block' do
+      expect(all('.review')[0]).to have_content("Awesome book!")
+      expect(all('.review')[0]).to have_content("This book is totally awesome")
+      expect(all('.review')[0]).to have_content("Rating: 5")
+      expect(all('.review')[1]).to have_content("Worst book!")
+      expect(all('.review')[1]).to have_content("This book is awful")
+      expect(all('.review')[1]).to have_content("Rating: 1")
+      expect(all('.review')[2]).to have_content("Pretty Good!")
+      expect(all('.review')[2]).to have_content("This book is super great!")
+      expect(all('.review')[2]).to have_content("Rating: 4")
+    end
+  end
+  it 'visitor can sort user reviews chronologically descending' do
+    visit user_path(@user)
+    click_on "Oldest First"
+
+    expect(page).to have_current_path(user_path(@user, sort_order: 'asc'))
   end
 end
