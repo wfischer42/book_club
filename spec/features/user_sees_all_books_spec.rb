@@ -117,8 +117,22 @@ describe 'book index' do
     visit books_path
 
     within("#all-books") do
-    click_on @books[0].title
-  end
+      click_on @books[0].title
+    end
+    expect(page).to have_current_path(book_path(@books[0]))
+
+    visit books_path
+
+    within("#top_3") do
+      click_on @books[0].title
+    end
+    expect(page).to have_current_path(book_path(@books[0]))
+
+    visit books_path
+    
+    within("#bottom_3") do
+      click_on @books[0].title
+    end
     expect(page).to have_current_path(book_path(@books[0]))
   end
 end
