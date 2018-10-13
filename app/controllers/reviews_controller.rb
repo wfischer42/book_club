@@ -14,4 +14,9 @@ class ReviewsController < ApplicationController
     review.user = user
   end
 
+  def destroy
+    Review.find(params[:user_id]).destroy
+    redirect_to(user_path(id: params[:id]))
+  end
+
 end
