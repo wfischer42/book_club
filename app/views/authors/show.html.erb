@@ -1,0 +1,14 @@
+<%= @author.name %>
+<br>
+Books:
+<div id="author-books">
+<% @author.books.each do |book| %><br>
+  Title: <%= book.title %>
+  Number of Pages: <%= book.pages %>
+  Year Published: <%= book.year %>
+  Other Authors:
+  <% book.other_authors(@author).each do |author| %>
+  <%= author %>
+  <% end  %>
+<% end %>
+</div>
