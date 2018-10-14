@@ -18,18 +18,14 @@ class Book < ApplicationRecord
   end
 
   def self.destroy_books_with_single_author(author_id)
-    # FIXME: This section updates count when it runs the where, so it
-    # undoes the original filter and keeps only the books with one instance
-    # of the same author. How to fix? Beats me.
     books = select('books.*, count(DISTINCT book_authors) AS auth_count')
     .joins(:book_authors)
     .group(:id, :book_id)
     .having('count(book_authors) = 1')
+    .where("books.id IN (SELECT book_authors.book_id FROM book_authors WHERE author_id = ?)", author_id)
+    .pluck(:id)
 
-    books = books.scoping do
-      where('book_authors.author_id = ?', author_id)
-    end
-    destroy(books_to_delete)
+    destroy(books)
   end
 
   def top_3_reviews

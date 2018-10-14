@@ -30,7 +30,5 @@ describe 'user deletes an author' do
 
       expect(Book.exists?(@book_1.id)).to eq(true)
     end
-
-
   end
 end
