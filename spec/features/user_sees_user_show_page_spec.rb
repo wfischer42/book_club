@@ -32,6 +32,32 @@ describe 'user show page' do
       end
     end
   end
+
+  it 'visitor sees info about books being reviewed' do
+    visit user_path(@user)
+    within '#reviews-block' do
+      @user.reviews.each do |review|
+        expect(page).to have_content(review.book.title)
+        review.book.authors.each do |author|
+          expect(page).to have_content(author.name)
+        end
+      end
+    end
+  end
+
+  it 'book title links to book show pages' do
+    visit user_path(@user)
+    click_on @books[0].title
+    expect(page).to have_current_path(book_path(id: @books[0].id))
+  end
+
+  it 'author name links to author show page' do
+    visit user_path(@user)
+    author = @books[0].authors.first
+    click_on author.name
+    expect(page).to have_current_path(author_path(id: author.id))
+  end
+
   it 'visitor can sort user reviews chronologically ascending' do
     visit user_path(@user)
     click_on "Newest First"
