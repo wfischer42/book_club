@@ -4,18 +4,18 @@
 Books:
 <div id="author-books">
 <% @author.books.each do |book| %><br>
-  Title: <%= book.title %>
+  Title:<%= link_to book.title, book_path(book) %>
   Number of Pages: <%= book.pages %>
   Year Published: <%= book.year %>
   Other Authors:
   <% book.other_authors(@author).each do |author| %>
-  <%= author %>
+  <%= link_to author.name, author_path(author) %>
   <% end  %>
     <% if book.reviews.count > 0 %>
     <%= book.best_review.title %>
     <%= book.best_review.description %>
     <%= book.best_review.rating %>
-    <%= book.best_review.user.name %>
+    <%= link_to book.best_review.user.name, user_path(book.best_review.user) %>
     <% end  %>
 <% end %>
 </div>

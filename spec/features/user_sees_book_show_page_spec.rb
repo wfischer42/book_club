@@ -2,15 +2,15 @@ require 'rails_helper'
 
 describe 'book show page' do
   before (:each) do
-    user = User.create(name: "Joe Shmoe")
+    @user = User.create(name: "Joe Shmoe")
 
     @book = Book.create(title: "Pride and Prejudice", pages: 130, year: 1950)
     @book.authors.create(name: "Jane Austen")
     @book.authors.create(name: "Ghost Writer")
-    @book.reviews.create(title: "Decent", description: "This book is super great!", rating: 3, user_id: user.id)
-    @book.reviews.create(title: "Uh...", description: "I don't get it.", rating: 2, user_id: user.id)
-    @book.reviews.create(title: "Best book evaarrr!", description: "This book is super great!", rating: 5, user_id: user.id)
-    @book.reviews.create(title: "Pretty goood!", description: "This book is super great!", rating: 4, user_id: user.id)
+    @book.reviews.create(title: "Decent", description: "This book is super great!", rating: 3, user_id: @user.id)
+    @book.reviews.create(title: "Uh...", description: "I don't get it.", rating: 2, user_id: @user.id)
+    @book.reviews.create(title: "Best book evaarrr!", description: "This book is super great!", rating: 5, user_id: @user.id)
+    @book.reviews.create(title: "Pretty goood!", description: "This book is super great!", rating: 4, user_id: @user.id)
 
     @other_book = Book.create(title: "Dune", pages: 900, year: 1950)
     author = @other_book.authors.create(name: "Frank Herbert")
@@ -47,6 +47,38 @@ describe 'book show page' do
     click_on "add a new review"
 
     expect(page).to have_current_path(new_book_review_path(book_id: @book.id))
+  end
+  it 'has link to go to author show page' do
+    visit book_path(@book)
+
+    within("#book-info") do
+      click_on @book.authors[0].name
+    end
+
+    expect(page).to have_current_path(author_path(@book.authors[0]))
+  end
+
+  it 'has link to user show page' do
+    visit book_path(@book)
+
+    within("#top-review-#{@book.reviews[0].id}") do
+      click_on @user.name
+    end
+    expect(page).to have_current_path(user_path(@user))
+
+    visit book_path(@book)
+
+    within("#bottom-review-#{@book.reviews[0].id}") do
+      click_on @user.name
+    end
+    expect(page).to have_current_path(user_path(@user))
+
+    visit book_path(@book)
+
+    within("#all-reviews-#{@book.reviews[0].id}") do
+      click_on @user.name
+    end
+    expect(page).to have_current_path(user_path(@user))
   end
 
   describe 'statistics' do

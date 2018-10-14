@@ -1,11 +1,12 @@
 class Book < ApplicationRecord
   validates_presence_of :title, :year, :pages
 
-  has_many :reviews
-  has_many :users, through: :reviews
+  has_many :reviews, dependent: :delete_all
+  has_many :users, through: :reviews, dependent: :nullify
 
   has_many :book_authors, dependent: :nullify
-  has_many :authors, through: :book_authors
+
+  has_many :authors, through: :book_authors, dependent: :nullify
 
   def self.with_avg_rating(sort_dir, sort_by)
     books = select('books.*, avg(rating) AS avg_rating, count(reviews) AS rev_count')
@@ -42,7 +43,7 @@ class Book < ApplicationRecord
 
   def other_authors(author)
     list = authors.map do |a|
-      a.name if a.name != author.name
+      a if a.name != author.name
     end
     list.compact
   end
