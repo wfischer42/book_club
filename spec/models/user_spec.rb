@@ -26,4 +26,25 @@ describe User, type: :model do
       expect(@user.sorted_reviews("asc")[2]).to eq(@rev_3)
     end
   end
+  describe 'Class Methods' do
+    it 'returns top three users by number of reviews' do
+      author = Author.create(name:"823uiahpfd")
+      book = Book.create(title:"191209", authors: [author], pages: 12, year: 1928)
+      book_2 = Book.create(title:"3434", authors: [author], pages: 12, year: 1928)
+      book_3 = Book.create(title:"44449", authors: [author], pages: 12, year: 1928)
+
+      user_1 = User.create(name:"Bob")
+      user_2 = User.create(name:"Tod")
+      user_3 = User.create(name:"Llama")
+
+      user_1.reviews.create(title:"abcd", description:"asdf", book: book, rating: 1)
+      user_2.reviews.create(title:"efgh", description:"qw4", book: book, rating: 2)
+      user_2.reviews.create(title:"ijkl", description:"123wyg456", book: book_2, rating: 3)
+      user_2.reviews.create(title:"asdfsd", description:"1asdfsdsdd", book: book_3, rating: 3)
+      user_3.reviews.create(title:"efgh", description:"qw4", book: book, rating: 2)
+      user_3.reviews.create(title:"ijkl", description:"123wyg456", book: book_2, rating: 3)
+
+      expect(User.top_three_reviewers).to eq([user_2, user_3, user_1])
+    end 
+  end
 end
