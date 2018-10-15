@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'new book page' do
 
   it 'form submission adds new book to database' do
-    visit '/books/new'
+    visit new_book_path
 
     fill_in("book[title]", with: "farewell to arms")
     fill_in("book[pages]", with: "650")
@@ -15,7 +15,7 @@ describe 'new book page' do
     expect(Book.last.authors.first.name).to eq("Ernest Hemmingway")
   end
   it 'redirects to new book show page on submission' do
-    visit '/books/new'
+    visit new_book_path
 
     fill_in("book[title]", with: "farewell to arms")
     fill_in("book[pages]", with: "650")
@@ -23,6 +23,6 @@ describe 'new book page' do
     fill_in("book[year]", with: "1934")
     click_button("Create Book")
 
-    expect(page).to have_current_path("/books/#{Book.last.id}")
+    expect(page).to have_current_path(book_path(Book.last))
   end
 end
