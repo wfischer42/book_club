@@ -1,0 +1,70 @@
+body {
+    font-family: sans-serif;
+    font-weight: 200;
+}
+
+div.main-content-block {
+    width: 70%;
+    min-width: 600px;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1.centered {
+    text-align: center;
+}
+
+div.top_3 {
+
+}
+
+div.books-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 30px 0 30px 0;
+}
+
+div.summary-block {
+    width: 200px;
+    height: auto;
+    padding-left: 22px;
+}
+
+div.book-title {
+    width: 130px;
+    height: 200px;
+    margin: 0 0 10px 0;
+    background-color: #3a3a3a;
+    padding: 1px 15px 0px 15px;
+}
+
+div.review-summary {
+    margin-top: 5px;
+    color: #3c3c3c;
+    font-size: smaller;
+    border: none;
+}
+
+.book-title a{
+    text-decoration: none; 
+    color: white;
+    transition: .4s;
+}
+.book-title a:hover{
+    color: #b7e8ec;
+}
+
+div#top_reviewers{
+    margin: 30px 0 30px 0;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+}
+
+div.reviewer{
+    margin: 0 40px 0px 40px;
+    text-align: center;
+}

@@ -1,41 +1,72 @@
+<hr>
+<h1 class="centered"> Top Three Books</h1>
+<hr>
 <div id="top_3">
-  <% @books_top_3.each do |book| %>
-    <div class="book-title">
-      <%= link_to book.title, book_path(book) %>
-    </div>
-    <%= book.pages %>
-    <%= book.year %>
-    <% book.authors.each do |author| %>
-    <%= link_to author.name, author_path(author) %>
+  <div class='books-row'>
+    <% @books_top_3.each do |book| %>
+      <div class='summary-block'>
+        <div class="book-title">
+          <h3><%= link_to book.title, book_path(book) %></h3>
+        </div>
+        <%= book.pages %> pages<br/>
+        Published in <%= book.year %><br/>
+        By
+        <% book.authors.each do |author| %>
+        <%= link_to author.name, author_path(author)%>
+        <br />
+        <% end %>
+        <div class="review-summary">
+          Average Rating: <%= book.avg_rating.round(1) %><br/>
+          Total Reviews: <%= book.reviews.count %>
+        </div>
+      </div>
     <% end %>
-    <p>Average Rating: <%= book.avg_rating %></p>
-    <p>Total Reviews: <%= book.reviews.count %></p>
-  <% end %>
+  </div>
 </div>
 
+<hr>
+<h1 class="centered"> Bottom Three Books</h1>
+<hr>
 <div id="bottom_3">
-  <% @books_bottom_3.each do |book| %>
-    <div class="book-title">
-      <%= link_to book.title, book_path(book) %>
-    </div>
-    <%= book.pages %>
-    <%= book.year %>
-    <% book.authors.each do |author| %>
-    <%= link_to author.name, author_path(author) %>
+  <div class='books-row'>
+    <% @books_bottom_3.each do |book| %>
+      <div class='summary-block'>
+        <div class="book-title">
+          <h3><%= link_to book.title, book_path(book) %></h3>
+        </div>
+        <%= book.pages %> pages <br/>
+        Published in <%= book.year %> <br/>
+        By
+        <% book.authors.each do |author| %>
+          <%= link_to author.name, author_path(author) %>
+          <br/>
+        <% end %>
+        <div class="review-summary">
+          Average Rating: <%= book.avg_rating.round(1) %>
+          Total Reviews: <%= book.reviews.count %>
+        </div>
+      </div>
     <% end %>
-    <p>Average Rating: <%= book.avg_rating %></p>
-    <p>Total Reviews: <%= book.reviews.count %></p>
-  <% end %>
+  </div>
 </div>
 
+<hr>
+<h1 class="centered"> Top Reviewers </h1>
+<hr>
 <div id="top_reviewers">
   <% @top_3_reviewers.each do |reviewer| %>
-    <div class="reviewer-name">
-      <%= link_to reviewer.name, user_path(reviewer) %>
+    <div class="reviewer">
+      <div class="reviewer-name">
+        <%= link_to reviewer.name, user_path(reviewer) %>
+      </div>
+      <%= "#{reviewer.review_count} reviews" %>
     </div>
-    Total Reviews: <%= reviewer.review_count  %>
   <% end %>
 </div>
+<hr>
+<h1 class="centered">All Books</h1>
+<hr />
+
 
 <form action="/books/new" method="get">
   <input type="submit" id="new-book" value="Add a New Book"></input>
