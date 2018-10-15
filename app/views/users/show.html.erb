@@ -5,6 +5,12 @@
       <a href="<%= @user.id %>?sort_order=asc">Oldest First</a>
       <% @user.reviews.each do |review| %>
         <div class="review">
+          <div class='reviewed-book-info'>
+            <%= link_to review.book.title, book_path(id: review.book.id) %>
+            <% review.book.authors.each do |author| %>
+              <%= link_to author.name, author_path(id: author.id) %>
+            <% end %>
+          </div>
           <%= review.title %>
           <%= review.description %>
           <%= "Rating: #{review.rating}" %>
