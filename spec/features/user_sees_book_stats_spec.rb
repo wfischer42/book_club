@@ -31,7 +31,7 @@ describe 'book index statistics' do
     @books = [book_1, book_2, book_3, book_4]
   end
   it 'user sees three highest rated books' do
-    visit '/books'
+    visit books_path
 
     within("#top_3") do
       expect(all(".book-title")[0]).to have_content("Pride and Prejudice")
@@ -40,7 +40,7 @@ describe 'book index statistics' do
     end
   end
   it 'user sees three lowest rated books' do
-    visit '/books'
+    visit books_path
 
     within("#bottom_3") do
       expect(all(".book-title")[0]).to have_content("Dune")
@@ -49,7 +49,7 @@ describe 'book index statistics' do
     end
   end
   it 'user sees three top reviewers' do
-    visit '/books'
+    visit books_path
 
     within("#top_reviewers") do
       expect(all(".reviewer-name")[0]).to have_content("Joe Shmoe")

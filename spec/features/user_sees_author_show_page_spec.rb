@@ -14,7 +14,7 @@ describe 'author show page' do
 
     visit author_path(author)
 
-    expect(page).to have_current_path("/authors/#{author.id}")
+    expect(page).to have_current_path(author_path(author))
 
     expect(page).to have_content(author.name)
     expect(page).not_to have_content(author_2.name)
@@ -34,7 +34,7 @@ describe 'author show page' do
 
     visit author_path(author_2)
 
-    expect(page).to have_current_path("/authors/#{author_2.id}")
+    expect(page).to have_current_path(author_path(author_2))
 
     expect(page).to have_content(author_2.books[0].title)
     expect(page).to have_content(author_2.books[1].title)
@@ -53,7 +53,7 @@ describe 'author show page' do
 
     visit author_path(author_2)
 
-    expect(page).to have_current_path("/authors/#{author_2.id}")
+    expect(page).to have_current_path(author_path(author_2))
 
     within '#author-books' do
     expect(page).to have_content(book_1.authors[0].name)
@@ -75,7 +75,7 @@ describe 'author show page' do
 
     visit author_path(author_2)
 
-    expect(page).to have_current_path("/authors/#{author_2.id}")
+    expect(page).to have_current_path(author_path(author_2))
 
     expect(page).to have_content(book_1.reviews[1].title)
     expect(page).not_to have_content(book_1.reviews[2].title)
@@ -91,13 +91,13 @@ describe 'author show page' do
     end
     expect(page).to have_current_path(book_path(book))
   end
-  
+
   it 'has link to user show page' do
     author = Author.create(name: "J.K. Rowling")
     book = author.books.create(title: "Lion, Witch, and Wardrobe", pages: 800, year: 1925)
     user = User.create(name: "Opinion Ated")
     book.reviews.create(title: "Worst book!", description: "This book is awful", rating: 1, user_id: user.id)
-    
+
     visit author_path(author)
 
     within("#author-books") do

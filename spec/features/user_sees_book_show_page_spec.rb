@@ -16,15 +16,15 @@ describe 'book show page' do
     author = @other_book.authors.create(name: "Frank Herbert")
   end
   it 'user sees only one book' do
-    visit "/books/#{@book.id}"
+    visit book_path(@book)
 
-    expect(page).to have_current_path("/books/#{@book.id}")
+    expect(page).to have_current_path(book_path(@book))
 
     expect(page).to have_content(@book.title)
     expect(page).not_to have_content(@other_book.title)
   end
   it 'user sees details about book' do
-    visit "/books/#{@book.id}"
+    visit book_path(@book)
 
     expect(page).to have_content(@book.pages)
     expect(page).to have_content(@book.year)
@@ -33,7 +33,7 @@ describe 'book show page' do
     end
   end
   it 'user sees all reviews about book' do
-    visit "/books/#{@book.id}"
+    visit book_path(@book)
 
     @book.reviews.each do |review|
       expect(page).to have_content(review.title)
@@ -43,10 +43,10 @@ describe 'book show page' do
     end
   end
   it 'has link to add a new review' do
-    visit "/books/#{@book.id}"
+    visit book_path(@book)
     click_on "add a new review"
 
-    expect(page).to have_current_path(new_book_review_path(book_id: @book.id))
+    expect(page).to have_current_path(new_book_review_path(@book))
   end
   it 'has link to go to author show page' do
     visit book_path(@book)
@@ -83,7 +83,7 @@ describe 'book show page' do
 
   describe 'statistics' do
     it 'user sees top 3 reviews' do
-      visit "/books/#{@book.id}"
+      visit book_path(@book)
 
       within '#book-stats' do
         expect(all(".top_review")[0]).to have_content("Best book evaarrr!")
@@ -98,7 +98,7 @@ describe 'book show page' do
       end
     end
     it 'user sees bottom 3 reviews' do
-      visit "/books/#{@book.id}"
+      visit book_path(@book)
 
       within '#book-stats' do
         expect(all(".bottom_review")[0]).to have_content("Uh...")
@@ -113,7 +113,7 @@ describe 'book show page' do
       end
     end
     it 'user sees overall average rating' do
-      visit "/books/#{@book.id}"
+      visit book_path(@book)
       within '#book-stats' do
         expect(page).to have_content('Average Rating - 3.5')
       end

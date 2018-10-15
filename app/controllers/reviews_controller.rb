@@ -12,6 +12,7 @@ class ReviewsController < ApplicationController
     review_params[:user] = user
     review = book.reviews.create!(review_params)
     review.user = user
+    redirect_to(book_path(book))
   end
 
   def destroy

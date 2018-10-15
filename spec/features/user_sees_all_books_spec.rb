@@ -20,7 +20,7 @@ describe 'book index' do
     @books = [book_1, book_2, book_3]
   end
   it 'user sees all books' do
-    visit '/books'
+    visit books_path
 
     expect(page).to have_content(@books[0].title)
     expect(page).to have_content(@books[0].pages)
@@ -28,7 +28,7 @@ describe 'book index' do
     expect(page).to have_content(@books[0].authors[0].name)
   end
   it 'user sees rating statistics per book' do
-    visit '/books'
+    visit books_path
 
     expect(page).to have_content("Average Rating: 3")
     expect(page).to have_content("Total Reviews: 2")
@@ -36,7 +36,7 @@ describe 'book index' do
 
   describe 'user can sort books by' do
     it 'average rating ascending' do
-      visit '/books'
+      visit books_path
       click_on "avg-rating-asc"
 
       expect(page).to have_current_path("/books?direction=asc&sort_by=avg_rating")
@@ -49,7 +49,7 @@ describe 'book index' do
     end
   end
     it 'average rating descending' do
-      visit '/books'
+      visit books_path
       click_on 'avg-rating-desc'
 
       expect(page).to have_current_path("/books?direction=desc&sort_by=avg_rating")
@@ -60,7 +60,7 @@ describe 'book index' do
       end
     end
     it 'page count ascending' do
-      visit '/books'
+      visit books_path
       click_on 'page-count-asc'
 
       expect(page).to have_current_path("/books?direction=asc&sort_by=pages")
@@ -72,7 +72,7 @@ describe 'book index' do
       end
     end
     it 'page count descending' do
-      visit '/books'
+      visit books_path
       click_on 'page-count-desc'
 
       expect(page).to have_current_path("/books?direction=desc&sort_by=pages")
@@ -84,7 +84,7 @@ describe 'book index' do
       end
     end
     it 'review count ascending' do
-      visit '/books'
+      visit books_path
       click_on 'review-count-asc'
 
       expect(page).to have_current_path("/books?direction=asc&sort_by=rev_count")
@@ -96,7 +96,7 @@ describe 'book index' do
       end
     end
     it 'review count descending' do
-      visit '/books'
+      visit books_path
       click_on 'review-count-desc'
 
       expect(page).to have_current_path("/books?direction=desc&sort_by=rev_count")
@@ -108,10 +108,10 @@ describe 'book index' do
       end
     end
   it 'has link to create a new book' do
-    visit '/books'
+    visit books_path
     click_on 'new-book'
 
-    expect(page).to have_current_path('/books/new')
+    expect(page).to have_current_path(new_book_path)
   end
   it 'has link to books show page' do
     visit books_path
@@ -142,7 +142,7 @@ describe 'book index' do
       click_on @books[0].users[0].name
     end
     expect(page).to have_current_path(user_path(@books[0].users[0]))
-  end 
+  end
   it 'has links to authors show page' do
     visit books_path
 

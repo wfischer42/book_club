@@ -38,7 +38,6 @@
   <%= review.title %>
   <%= review.description %>
   <%= review.rating %>
-  binding.pry
   <div id="all-reviews-<%= review.id %>">
     <%= link_to review.user.name, user_path(review.user) %>
   </div>
