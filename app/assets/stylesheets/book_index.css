@@ -95,6 +95,7 @@ input#new-book:hover {
 }
 
 #all-books{
+    width: 100%;
     display:grid;
     grid-template: repeat(auto-fill, 330px) / 1fr 1fr 1fr;
 }
