@@ -68,3 +68,38 @@ div.reviewer{
     margin: 0 40px 0px 40px;
     text-align: center;
 }
+
+.book-list-controlls {
+    display: flex;
+    margin: 20px 0 30px 0;
+}
+
+form {
+    margin-left: auto;
+}
+
+input#new-book {
+    font-size: smaller;
+    border:  none;
+    background: #e0e0e0;
+    color: #404040;
+    height: 35px;
+    border-radius:  5px;
+    width: 130px;
+    transition: .2s;
+    margin-right: 14px;
+}
+input#new-book:hover {
+    background: #4a4a4a;
+    color: white;
+}
+
+#all-books{
+    display:grid;
+    grid-template: repeat(auto-fill, 330px) / 1fr 1fr 1fr;
+}
+
+#all-books .summary-block{
+    padding: 0;
+    margin-left: 14px;
+}

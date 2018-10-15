@@ -26,7 +26,7 @@ class Book < ApplicationRecord
   end
 
   def average_rating
-    reviews.average(:rating)
+    reviews.average(:rating).round(1)
   end
 
   def other_authors(author)
