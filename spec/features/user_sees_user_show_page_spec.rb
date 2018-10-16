@@ -23,24 +23,20 @@ describe 'user show page' do
 
     within '#user-info' do
       expect(page).to have_content(@user.name)
-      within '#reviews-block' do
-        @user.reviews.each do |review|
-          expect(page).to have_content(review.title)
-          expect(page).to have_content(review.description)
-          expect(page).to have_content("Rating: #{review.rating}")
-        end
-      end
+    end
+    @user.reviews.each do |review|
+      expect(page).to have_content(review.title)
+      expect(page).to have_content(review.description)
+      expect(page).to have_content("#{review.rating} stars")
     end
   end
 
   it 'visitor sees info about books being reviewed' do
     visit user_path(@user)
-    within '#reviews-block' do
-      @user.reviews.each do |review|
-        expect(page).to have_content(review.book.title)
-        review.book.authors.each do |author|
-          expect(page).to have_content(author.name)
-        end
+    @user.reviews.each do |review|
+      expect(page).to have_content(review.book.title)
+      review.book.authors.each do |author|
+        expect(page).to have_content(author.name)
       end
     end
   end
@@ -63,17 +59,15 @@ describe 'user show page' do
     click_on "Newest First"
 
     expect(page).to have_current_path(user_path(@user, sort_order: 'desc'))
-    within '#reviews-block' do
-      expect(all('.review')[0]).to have_content("Awesome book!")
-      expect(all('.review')[0]).to have_content("This book is totally awesome")
-      expect(all('.review')[0]).to have_content("Rating: 5")
-      expect(all('.review')[1]).to have_content("Worst book!")
-      expect(all('.review')[1]).to have_content("This book is awful")
-      expect(all('.review')[1]).to have_content("Rating: 1")
-      expect(all('.review')[2]).to have_content("Pretty Good!")
-      expect(all('.review')[2]).to have_content("This book is super great!")
-      expect(all('.review')[2]).to have_content("Rating: 4")
-    end
+    expect(all('.review-block')[2]).to have_content("Awesome book!")
+    expect(all('.review-block')[2]).to have_content("This book is totally awesome")
+    expect(all('.review-block')[2]).to have_content("5 stars")
+    expect(all('.review-block')[1]).to have_content("Worst book!")
+    expect(all('.review-block')[1]).to have_content("This book is awful")
+    expect(all('.review-block')[1]).to have_content("1 stars")
+    expect(all('.review-block')[0]).to have_content("Pretty Good!")
+    expect(all('.review-block')[0]).to have_content("This book is super great!")
+    expect(all('.review-block')[0]).to have_content("4 stars")
   end
   it 'visitor can sort user reviews chronologically descending' do
     visit user_path(@user)

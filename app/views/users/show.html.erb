@@ -3,6 +3,7 @@
   <div class='show-heading'>
     <h1><%= @user.name %></h1>
   </div>
+</div>
 
 <% if !@user.reviews.empty? %>
   <hr>
@@ -12,6 +13,7 @@
     <a href="<%= @user.id %>?sort_order=desc" id="left-link">Newest First</a>
     <a href="<%= @user.id %>?sort_order=asc">Oldest First</a>
   </div>
+
   <% @reviews.each do |review| %>
     <div class="book-review-row">
       <div class='summary-block'>
@@ -29,13 +31,16 @@
         <div class="review-header-block">
           <div class="review-header-info">
             <h4 class="review-title"><%= review.title %></h4>
-            <div class="review-rating"><%= review.rating %> stars <br/>
-              <%= link_to review.user.name, user_path(review.user)%>
+            <div class="review-rating">
+              <%= review.rating %> stars
             </div>
           </div>
         </div>
         <div>
           <%= review.description %>
+        </div>
+        <div id="delete-<%= review.id %>" class="delete-review">
+           <%= link_to "Delete Review", user_review_path(@user, review), method: :delete, data: {confirm: "Really delete the review?"} %>
         </div>
       </div>
     </div>
