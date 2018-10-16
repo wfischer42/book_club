@@ -1,0 +1,35 @@
+.new-form-flex{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+ 
+.new-form {
+    width: 350px;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1.5fr;
+    margin-bottom: 10px;
+}
+
+.new-form div{
+    margin: 3px 0px 3px 0px;;
+}
+
+.new-form label{
+    float: right;
+    margin-right: 10px;
+}
+
+.new-form input {
+    width: 100%;
+}
+
+form.new_review{
+    margin: 0;
+}
+
+.new-review-submit{
+    width: 100px;
+    background-color: transparent;
+}
