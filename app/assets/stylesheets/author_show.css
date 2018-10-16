@@ -1,0 +1,56 @@
+.show-heading {
+    display: flex;
+}
+.delete-button{
+    font-size: smaller;
+    display: block;
+    margin: 20px 0 0 auto;
+    background-color: green;
+    margin-left: auto;
+    border-radius: 5px;
+    height: 30px;
+    padding: 13px 20px 0px 20px;
+    text-decoration: none;
+    color: #3a3a3a;
+    background-color: #e4e4e4;
+    transition: .2s;
+    width: 100px;
+    text-align: center;
+}
+.delete-button:hover{
+    color: white;
+    background-color: #3a3a3a;
+}
+
+#author-books {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(auto-fit, 1fr);
+}
+
+.review-title {
+    margin: 5px 0 5px 0;
+}
+
+.review-rating {
+    font-size: smaller;
+    color: #424242;
+    margin-bottom: 5px;
+}
+
+.reviewer-link{
+    font-size: smaller;
+}
+
+.review-header-label{
+    margin: 5px 0 5px 0;
+    font-size: smaller;
+    font-weight: bolder;
+}
+
+#author-books .summary-block{
+    width: 90%;
+}
+
+.show-title {
+    margin-bottom: 0;
+}

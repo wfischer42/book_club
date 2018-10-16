@@ -11,7 +11,7 @@ div.main-content-block {
     margin-right: auto;
 }
 
-h1.centered {
+.centered {
     text-align: center;
 }
 
@@ -27,9 +27,9 @@ div.books-row {
 }
 
 div.summary-block {
-    width: 200px;
+    width: 90%;
     height: auto;
-    padding-left: 22px;
+    margin: 20px auto 20px auto;
 }
 
 div.book-title {
@@ -38,6 +38,7 @@ div.book-title {
     margin: 0 0 10px 0;
     background-color: #3a3a3a;
     padding: 1px 15px 0px 15px;
+    color: white;
 }
 
 div.review-summary {
@@ -94,13 +95,15 @@ input#new-book:hover {
     color: white;
 }
 
-#all-books{
+.all-books{
     width: 100%;
     display:grid;
-    grid-template: repeat(auto-fill, 330px) / 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows:  repeat(auto-fit, 1fr);
 }
 
-#all-books .summary-block{
-    padding: 0;
-    margin-left: 14px;
+.book-details-block{
+    margin: 0 auto 20px auto;
+    width: 160px;
+    
 }
