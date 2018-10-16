@@ -12,6 +12,7 @@ class Book < ApplicationRecord
     books = select('books.*, avg(rating) AS avg_rating, count(reviews) AS rev_count')
     .joins(:reviews)
     .group(:id, :book_id)
+    binding.pry
     if sort_dir && sort_by
       books = books.order("#{sort_by} #{sort_dir}")
     end
