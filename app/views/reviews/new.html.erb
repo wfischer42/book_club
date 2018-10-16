@@ -1,18 +1,53 @@
-<%= @book.title %>
-<%= @book.pages %>
-<%= @book.year %>
-<%  @book.authors.each do |author|%>
-  <%= author.name %>
-<% end %>
-
-<%= form_for [@book, @review] do |f| %>
-<%= f.label :user_name  %>
-<input type="text" name="user_name" placeholder="your name" />
-<%= f.label :title %>
-<%= f.text_field :title %>
-<%= f.label :description  %>
-<%= f.text_field :description  %>
-<%= f.label :rating  %>
-<%= f.number_field :rating, min: 1, max: 5  %>
-<%= f.submit %>
-<% end %>
+<h2 class="show-title">Book Details</h2>
+<div class="book-details-block book-show-page">
+  <div id="book-info">
+    <div class="book-title">
+      <h2><%= @book.title %></h2>
+    </div>
+    <div class="book-details">
+      <%= @book.pages %> pages<br />
+      Published in <%= @book.year %><br />
+      By <%  @book.authors.each do |author|%>
+        <%= link_to author.name, author_path(author) %><br />
+      <% end %><br />
+      Average Rating - <%= @book.average_rating %>
+      <%= link_to "Review Book", new_book_review_path(@book) %>
+      <%= link_to "Delete Book", book_path(@book), method: :delete, data: {confirm: "Really delete the review?"}, class: "delete-button" %>
+    </div>
+  </div>
+</div>
+<br />
+<hr />
+<br />
+<div class="new-form-flex">
+  <%= form_for [@book, @review] do |f| %>
+    <div class="new-form">
+      <div>
+        <label for="review_user_name">User's Name</label>
+      </div>
+      <div>
+        <input id="review_user_name" type="text" name="user_name" placeholder="e.g. Sir Isaac Newton" />
+      </div>
+      <div>
+        <%= f.label :title, "Review Title" %>
+      </div>
+      <div>
+        <%= f.text_field :title, placeholder: "e.g. Not bad, but..." %>
+      </div>
+      <div>
+        <%= f.label :description %>
+      </div>
+      <div>
+        <%= f.text_field :description %>
+      </div>
+      <div>
+        <%= f.label :rating %>
+      </div>
+      <div>
+        <%= f.number_field :rating, min: 1, max: 5 %>
+      </div>
+      <div></div>
+      <%= f.submit "Add Review", class: 'new-review-submit' %>
+    </div>
+  <% end %>
+</div>
