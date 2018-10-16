@@ -10,7 +10,10 @@ class User < ApplicationRecord
   end
 
   def sorted_reviews(order)
-    order ||= 'desc'
-    reviews.order(created_at: order.to_sym)
+    if order == 'asc'
+      reviews.order(:id)
+    else
+      reviews.order(:id).reverse
+    end
   end
 end

@@ -64,15 +64,15 @@ describe 'user show page' do
 
     expect(page).to have_current_path(user_path(@user, sort_order: 'desc'))
     within '#reviews-block' do
-      expect(all('.review')[0]).to have_content("Awesome book!")
-      expect(all('.review')[0]).to have_content("This book is totally awesome")
-      expect(all('.review')[0]).to have_content("Rating: 5")
+      expect(all('.review')[2]).to have_content("Awesome book!")
+      expect(all('.review')[2]).to have_content("This book is totally awesome")
+      expect(all('.review')[2]).to have_content("Rating: 5")
       expect(all('.review')[1]).to have_content("Worst book!")
       expect(all('.review')[1]).to have_content("This book is awful")
       expect(all('.review')[1]).to have_content("Rating: 1")
-      expect(all('.review')[2]).to have_content("Pretty Good!")
-      expect(all('.review')[2]).to have_content("This book is super great!")
-      expect(all('.review')[2]).to have_content("Rating: 4")
+      expect(all('.review')[0]).to have_content("Pretty Good!")
+      expect(all('.review')[0]).to have_content("This book is super great!")
+      expect(all('.review')[0]).to have_content("Rating: 4")
     end
   end
   it 'visitor can sort user reviews chronologically descending' do
