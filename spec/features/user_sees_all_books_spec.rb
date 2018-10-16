@@ -10,7 +10,7 @@ describe 'book index' do
 
     book_2 = Book.create(title: "Dune", pages: 900, year: 1950)
     author = book_2.authors.create(name: "Frank Herbert")
-    # book_2.reviews.create(title: "Worst book!", description: "This book is awful", rating: 1, user_id: user.id)
+    book_2.reviews.create(title: "Worst book!", description: "This book is awful", rating: 1, user_id: user.id)
 
     book_3 = Book.create(title: "Pride and Prejudice", pages: 130, year: 1950)
     author = book_3.authors.create(name: "Jane Austen")
