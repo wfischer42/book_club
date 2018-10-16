@@ -3,7 +3,7 @@
     <div id="reviews-block">
       <a href="<%= @user.id %>?sort_order=desc">Newest First</a>
       <a href="<%= @user.id %>?sort_order=asc">Oldest First</a>
-      <% @user.reviews.each do |review| %>
+      <% @reviews.each do |review| %>
         <div class="review">
           <div class='reviewed-book-info'>
             <%= link_to review.book.title, book_path(id: review.book.id) %>
