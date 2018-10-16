@@ -1,21 +1,45 @@
-<%= @author.name %>
-<%= link_to "Delete Author", author_path(@author), method: :delete, data: {confirm: "Really delete the author?"} %>
-<br>
-Books:
-<div id="author-books">
-<% @author.books.each do |book| %><br>
-  Title:<%= link_to book.title, book_path(book) %>
-  Number of Pages: <%= book.pages %>
-  Year Published: <%= book.year %>
-  Other Authors:
-  <% book.other_authors(@author).each do |author| %>
-  <%= link_to author.name, author_path(author) %>
-  <% end  %>
-    <% if book.reviews.count > 0 %>
-    <%= book.best_review.title %>
-    <%= book.best_review.description %>
-    <%= book.best_review.rating %>
-    <%= link_to book.best_review.user.name, user_path(book.best_review.user) %>
-    <% end  %>
-<% end %>
+<h2 class="show-title">Author Profile</h2>
+<div class='show-heading'>
+  <h1><%= @author.name %></h1>
+  <%= link_to "Delete Author", author_path(@author), method: :delete, data: {confirm: "Really delete the author?"}, class: 'delete-button' %>
+</div>
+
+<hr>
+<h2 class="centered">Books</h2>
+<hr>
+<div class="all-books" id="author-books">
+  <% @author.books.each do |book| %>
+    <div class="summary-block">
+      <div class="book-details-block">
+        <div class="book-title">
+          <h3><%= link_to book.title, book_path(book) %></h3>
+        </div>
+        <%= book.pages %> pages <br />
+        Published in <%= book.year %> <br />
+      </div>
+      <% unless book.other_authors(@author).empty? %>
+        Co-authors:
+        <% book.other_authors(@author).each do |author| %>
+          <%= link_to author.name, author_path(author) %> <br>
+        <% end %>
+      <% end %>
+      <% unless book.reviews.empty? %>
+        <div class="best-review">
+
+          <div class="review-header-block">
+            <div class="review-header-info">
+              <div class="review-header-label">Top Review</div>
+              <h4 class="review-title"><%= book.best_review.title %></h4>
+              <div class="review-rating"><%= book.best_review.rating %> stars <br/>
+                <%= link_to book.best_review.user.name, user_path(book.best_review.user)%>
+              </div>
+            </div>
+          </div>
+          <div>
+            <%= book.best_review.description %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
