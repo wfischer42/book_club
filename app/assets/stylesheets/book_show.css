@@ -1,0 +1,35 @@
+.book-details-block.book-show-page{
+    margin: 30px 0 0 0;
+    width: 200px;
+}
+
+.book-details {
+    width: 160px;
+    margin: 0 0 10px 20px;
+    position: relative;
+}
+
+.book-details-block #book-info{
+    display: flex;
+    flex-direction: row;
+    width: 320px;
+}
+
+.book-details-block .delete-button{
+    position: absolute;
+    bottom: 0px;
+}
+
+.ranked-reviews{
+    display: flex;
+    margin: 30px 0 30px 0;
+}
+
+.top_review, .bottom_review{
+    width:33%;
+    text-align: center;
+}
+
+.review-block {
+    margin: 20px 0 20px 0
+}

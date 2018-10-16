@@ -44,7 +44,7 @@ describe 'book show page' do
   end
   it 'has link to add a new review' do
     visit book_path(@book)
-    click_on "add a new review"
+    click_on "Review Book"
 
     expect(page).to have_current_path(new_book_review_path(@book))
   end
@@ -85,38 +85,33 @@ describe 'book show page' do
     it 'user sees top 3 reviews' do
       visit book_path(@book)
 
-      within '#book-stats' do
-        expect(all(".top_review")[0]).to have_content("Best book evaarrr!")
-        expect(all(".top_review")[0]).to have_content("Rating - 5")
-        expect(all(".top_review")[0]).to have_content("Joe Shmoe")
-        expect(all(".top_review")[1]).to have_content("Pretty goood!")
-        expect(all(".top_review")[1]).to have_content("Rating - 4")
-        expect(all(".top_review")[1]).to have_content("Joe Shmoe")
-        expect(all(".top_review")[2]).to have_content("Decent")
-        expect(all(".top_review")[2]).to have_content("Rating - 3")
-        expect(all(".top_review")[2]).to have_content("Joe Shmoe")
-      end
+      expect(all(".top_review")[0]).to have_content("Best book evaarrr!")
+      expect(all(".top_review")[0]).to have_content("5 stars")
+      expect(all(".top_review")[0]).to have_content("Joe Shmoe")
+      expect(all(".top_review")[1]).to have_content("Pretty goood!")
+      expect(all(".top_review")[1]).to have_content("4 stars")
+      expect(all(".top_review")[1]).to have_content("Joe Shmoe")
+      expect(all(".top_review")[2]).to have_content("Decent")
+      expect(all(".top_review")[2]).to have_content("3 stars")
+      expect(all(".top_review")[2]).to have_content("Joe Shmoe")
+
     end
     it 'user sees bottom 3 reviews' do
       visit book_path(@book)
 
-      within '#book-stats' do
-        expect(all(".bottom_review")[0]).to have_content("Uh...")
-        expect(all(".bottom_review")[0]).to have_content("Rating - 2")
-        expect(all(".bottom_review")[0]).to have_content("Joe Shmoe")
-        expect(all(".bottom_review")[2]).to have_content("Pretty goood!")
-        expect(all(".bottom_review")[2]).to have_content("Rating - 4")
-        expect(all(".bottom_review")[2]).to have_content("Joe Shmoe")
-        expect(all(".bottom_review")[1]).to have_content("Decent")
-        expect(all(".bottom_review")[1]).to have_content("Rating - 3")
-        expect(all(".bottom_review")[1]).to have_content("Joe Shmoe")
-      end
+      expect(all(".bottom_review")[0]).to have_content("Uh...")
+      expect(all(".bottom_review")[0]).to have_content("2 stars")
+      expect(all(".bottom_review")[0]).to have_content("Joe Shmoe")
+      expect(all(".bottom_review")[2]).to have_content("Pretty goood!")
+      expect(all(".bottom_review")[2]).to have_content("4 stars")
+      expect(all(".bottom_review")[2]).to have_content("Joe Shmoe")
+      expect(all(".bottom_review")[1]).to have_content("Decent")
+      expect(all(".bottom_review")[1]).to have_content("3 stars")
+      expect(all(".bottom_review")[1]).to have_content("Joe Shmoe")
     end
     it 'user sees overall average rating' do
       visit book_path(@book)
-      within '#book-stats' do
-        expect(page).to have_content('Average Rating - 3.5')
-      end
+      expect(page).to have_content('Average Rating - 3.5')
     end
   end
 end

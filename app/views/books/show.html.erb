@@ -1,44 +1,79 @@
-<div id="book-info">
-  <%= @book.title %>
-  <%= @book.pages %>
-  <%= @book.year %>
-  <%  @book.authors.each do |author|%>
-    <%= link_to author.name, author_path(author) %>
-  <% end %>
-</div>
-
-<%= link_to "Delete", book_path(@book), method: :delete, data: {confirm: "Really delete the review?"} %>
-
-<%= link_to "add a new review", new_book_review_path(@book) %>
-
-<div id="book-stats">
-  Average Rating - <%= @book.average_rating %>
-  <% @book.top_3_reviews.each do |review| %>
-    <div class="top_review">
-      <%= review.title %>
-      Rating - <%= review.rating %>
-      <div id= "top-review-<%= review.id %>">
-        <%=  link_to review.user.name, user_path(review.user) %>
-      </div>
+<h2 class="show-title">Book Details</h2>
+<div class="book-details-block book-show-page">
+  <div id="book-info">
+    <div class="book-title">
+      <h2><%= @book.title %></h2>
     </div>
-  <% end %>
-
-  <% @book.bottom_3_reviews.each do |review| %>
-    <div class="bottom_review">
-      <%= review.title %>
-      Rating - <%= review.rating %>
-      <div id= "bottom-review-<%= review.id %>">
-        <%= link_to review.user.name, user_path(review.user) %>
-      </div>
+    <div class="book-details">
+      <%= @book.pages %> pages<br />
+      Published in <%= @book.year %><br />
+      By <%  @book.authors.each do |author|%>
+        <%= link_to author.name, author_path(author) %><br />
+      <% end %><br />
+      Average Rating - <%= @book.average_rating %>
+      <%= link_to "Review Book", new_book_review_path(@book) %>
+      <%= link_to "Delete Book", book_path(@book), method: :delete, data: {confirm: "Really delete the review?"}, class: "delete-button" %>
     </div>
-  <% end %>
-</div>
-
-<%  @book.reviews.each do |review| %>
-  <%= review.title %>
-  <%= review.description %>
-  <%= review.rating %>
-  <div id="all-reviews-<%= review.id %>">
-    <%= link_to review.user.name, user_path(review.user) %>
   </div>
+</div>
+
+<% if @book.reviews.count > 3 %>
+  <hr>
+  <h2 class="centered">Best Reviews</h2>
+  <hr>
+  <div class="ranked-reviews">
+    <% @book.top_3_reviews.each do |review| %>
+      <div class="top_review" id="top-review-<%= review.id %>">
+        <div class="review-header-block">
+          <div class="review-header-info">
+            <h4 class="review-title"><%= review.title %></h4>
+            <div class="review-rating"><%= review.rating %> stars <br/>
+              <%= link_to review.user.name, user_path(review.user)%>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+
+  <hr>
+  <h2 class="centered">Worst Reviews</h2>
+  <hr>
+  <div class="ranked-reviews">
+    <% @book.bottom_3_reviews.each do |review| %>
+      <div class="bottom_review" id="bottom-review-<%= review.id %>">
+        <div class="review-header-block">
+          <div class="review-header-info">
+            <h4 class="review-title"><%= review.title %></h4>
+            <div class="review-rating"><%= review.rating %> stars <br/>
+              <%= link_to review.user.name, user_path(review.user)%>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+<% end %>
+
+<% unless @book.reviews.empty? %>
+  <hr>
+  <h2 class="centered">All Reviews</h2>
+  <hr>
+  <% @book.reviews.each do |review| %>
+    <div class="review-block" id="all-reviews-<%= review.id %>">
+      <div class="review-header-block">
+        <div class="review-header-info">
+          <h4 class="review-title"><%= review.title %></h4>
+          <div class="review-rating"><%= review.rating %> stars <br/>
+            <%= link_to review.user.name, user_path(review.user)%>
+          </div>
+        </div>
+      </div>
+      <div>
+        <%= review.description %>
+      </div>
+    </div>
+  <% end %>
 <% end %>
