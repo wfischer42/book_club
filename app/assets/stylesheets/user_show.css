@@ -1,0 +1,33 @@
+.book-review-row {
+    display: flex;
+    align-items: center;
+}
+
+.book-review-row .summary-block{
+    margin-right: 20px;
+}
+
+.review-sort{
+    display: flex;
+}
+
+.review-sort a{
+    text-decoration: none;
+    color: #424242;
+    display: block;
+    background-color: #e0e0e0;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: smaller;
+    transition: .2s;
+}
+
+.review-sort a:hover{
+    background-color: #3a3a3a;
+    color: white;
+}
+
+.review-sort #left-link{
+    margin-left: auto;
+    margin-right: 20px;
+}
