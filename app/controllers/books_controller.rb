@@ -21,8 +21,13 @@ class BooksController < ApplicationController
   def create
     params.require(:book).permit(:title, :pages, :year, :authors)
     book_params = process_params(params)
-    book = Book.create!(book_params)
-    redirect_to(book_path(id: book.id)) if book.id
+    if book_params == nil
+      book = Book.find_by(title: params[:book][:title].titleize)
+      redirect_to book_path(book)
+    else
+      book = Book.create!(book_params)
+      redirect_to(book_path(id: book.id)) if book.id
+    end
   end
 
   def process_params(params)
