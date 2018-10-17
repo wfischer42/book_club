@@ -2,7 +2,7 @@
 <div class="book-details-block book-show-page">
   <div id="book-info">
     <div class="book-title">
-      <h2><%= @book.title %></h2>
+      <h2><%= link_to @book.title, book_path(@book) %></h2>
     </div>
     <div class="book-details">
       <%= @book.pages %> pages<br />
@@ -11,8 +11,6 @@
         <%= link_to author.name, author_path(author) %><br />
       <% end %><br />
       Average Rating - <%= @book.average_rating %>
-      <%= link_to "Review Book", new_book_review_path(@book) %>
-      <%= link_to "Delete Book", book_path(@book), method: :delete, data: {confirm: "Really delete the review?"}, class: "delete-button" %>
     </div>
   </div>
 </div>
@@ -22,30 +20,14 @@
 <div class="new-form-flex">
   <%= form_for [@book, @review] do |f| %>
     <div class="new-form">
-      <div>
-        <label for="review_user_name">User's Name</label>
-      </div>
-      <div>
+        <div><label for="review_user_name">User's Name</label></div>
         <input id="review_user_name" type="text" name="user_name" placeholder="e.g. Sir Isaac Newton" />
-      </div>
-      <div>
-        <%= f.label :title, "Review Title" %>
-      </div>
-      <div>
+        <div><%= f.label :title, "Review Title" %></div>
         <%= f.text_field :title, placeholder: "e.g. Not bad, but..." %>
-      </div>
-      <div>
-        <%= f.label :description %>
-      </div>
-      <div>
+        <div><%= f.label :description %></div>
         <%= f.text_field :description %>
-      </div>
-      <div>
-        <%= f.label :rating %>
-      </div>
-      <div>
-        <%= f.number_field :rating, min: 1, max: 5 %>
-      </div>
+        <div><%= f.label :rating %></div>
+        <%= f.number_field :rating, min: 1, max: 5,  placeholder:"1 - 5" %>
       <div></div>
       <%= f.submit "Add Review", class: 'new-review-submit' %>
     </div>

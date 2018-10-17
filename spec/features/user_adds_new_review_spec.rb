@@ -20,7 +20,7 @@ describe 'add review page' do
     fill_in("review[title]", with: "This book rulez!")
     fill_in("review[description]", with: "I'd read this book like a million times")
     fill_in("review[rating]", with: "4")
-    click_button("Create Review")
+    click_button("Add Review")
 
     expect(@book.reviews.last.title).to have_content("This book rulez!")
   end
@@ -31,7 +31,7 @@ describe 'add review page' do
     fill_in("review[title]", with: "This book rulez!")
     fill_in("review[description]", with: "I'd read this book like a million times")
     fill_in("review[rating]", with: "4")
-    click_button("Create Review")
+    click_button("Add Review")
 
     expect(page).to have_current_path(book_path(@book))
   end

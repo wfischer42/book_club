@@ -1,12 +1,18 @@
-Add a New Book
-
+<h2 class="show-title centered">Add a New Book</h2>
+<hr>
+<div class="new-form-flex">
 <%= form_for @book do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title, placeholder: "Title" %>
-  <%= f.label :pages %>
-  <%= f.number_field :pages, min: 1%>
-  <%= f.label :year %>
-  <%= f.number_field :year, max: Date.today.year%>
-  <input type="text" name="book[authors]" placeholder="Authors, separated by commas">
-  <%= f.submit %>
+  <div class="new-form" id="new-book-form">
+    <div><%= f.label :title %></div>
+    <%= f.text_field :title, placeholder: "e.g. The Fellowship of the Ring" %>
+    <div><%= f.label :pages%></div>
+    <%= f.number_field :pages, min: 1, placeholder: '721'%>
+    <div><%= f.label :year%></div>
+    <%= f.number_field :year, max: Date.today.year, placeholder: '1812'%>
+    <div><label for="book_authors">Authors</label></div>
+    <input id="book_authors" type="text" name="book[authors]" placeholder="e.g. 'J.K. Rowling, George R.R. Martin'">
+    <div></div>
+    <%= f.submit "Create Book", class: "new-book-submit" %>
+  </div>
 <% end %>
+</div>
