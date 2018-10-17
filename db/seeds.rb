@@ -41,7 +41,7 @@ end
 
 until @authors.count == 0
   authors = get_authors
-  new_book = Book.create(title: Faker::Book.unique.title, pages: rand(97..800), year: rand(1910..2018), authors: authors)
+  new_book = Book.create(title: Faker::Book.unique.title.titleize, pages: rand(97..800), year: rand(1910..2018), authors: authors)
 end
 
 60.times do
