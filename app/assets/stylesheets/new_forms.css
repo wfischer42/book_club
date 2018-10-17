@@ -3,33 +3,48 @@
     justify-content: center;
     align-items:center;
 }
- 
+
 .new-form {
     width: 350px;
     display: grid;
     grid-template-columns: 30% 70%;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1.5fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
     margin-bottom: 10px;
 }
 
+#new-book-form{
+    width:300px;
+        grid-template-columns: 20% 80%;
+}
+
+.new-form input{
+    margin: 3px 0px 3px 0px;
+    height: 25px;
+}
+
 .new-form div{
-    margin: 3px 0px 3px 0px;;
-}
-
-.new-form label{
-    float: right;
     margin-right: 10px;
+    margin: 10px 10px 0px 0px;
+}
+.new-form div label{
+    float: right;
 }
 
-.new-form input {
-    width: 100%;
-}
-
-form.new_review{
+form.new_review,
+form.new_book {
     margin: 0;
 }
 
-.new-review-submit{
-    width: 100px;
+.new-review-submit,
+.new-book-submit{
+    display: block;
+    float: left;
     background-color: transparent;
+    transition: .2s;
+}
+
+.new-review-submit:hover,
+.new-book-submit:hover{
+    background-color: #3a3a3a;
+    color: white;
 }

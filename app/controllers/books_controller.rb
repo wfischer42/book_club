@@ -25,8 +25,9 @@ class BooksController < ApplicationController
       book = Book.find_by(title: params[:book][:title].titleize)
       redirect_to book_path(book)
     else
-      book = Book.create!(book_params)
-      redirect_to(book_path(id: book.id)) if book.id
+      book = Book.create(book_params)
+      redirect_to(book_path(id: book.id)) and return if book.id
+      redirect_to(new_book_path) and return if !book.id
     end
   end
 
