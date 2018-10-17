@@ -9,13 +9,20 @@ class Book < ApplicationRecord
   has_many :authors, through: :book_authors, dependent: :nullify
 
   def self.with_avg_rating(sort_dir, sort_by)
-    books = select('books.*, avg(rating) AS avg_rating, count(reviews) AS rev_count')
-    .joins(:reviews)
+    books = select('books.*, CASE WHEN count(reviews.rating) = 0 THEN 0 ELSE avg(reviews.rating) END AS avg_rating, count(reviews) AS rev_count')
+    .left_outer_joins(:reviews)
     .group(:id, :book_id)
     if sort_dir && sort_by
       books = books.order("#{sort_by} #{sort_dir}")
     end
     books
+  end
+
+  def self.get_three(sort_dir, sort_by)
+    books = select('books.*, avg(rating) AS avg_rating, count(reviews) AS rev_count')
+    .joins(:reviews)
+    .group(:id, :book_id)
+    books = books.order("#{sort_by} #{sort_dir}")
   end
 
   def self.destroy_books_with_single_author(author_id)
