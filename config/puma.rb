@@ -16,6 +16,7 @@ port        ENV.fetch("PORT") { 3000 }
 environment ENV.fetch("RAILS_ENV") { "development" }
 
 # Specifies the number of `workers` to boot in clustered mode.
+#test
 # Workers are forked webserver processes. If using threads and workers together
 # the concurrency of the application would be max `threads` * `workers`.
 # Workers do not work on JRuby or Windows (both of which do not support
@@ -44,7 +45,7 @@ environment ENV.fetch("RAILS_ENV") { "development" }
 # clustered mode by specifying a number of `workers`. After each worker
 # process is booted, this block will be run. If you are using the `preload_app!`
 # option, you will want to use this block to reconnect to any threads
-# or connections that may have been created at application boot, as Ruby
+# or connections that may have been created at application boot, Ruby
 # cannot share connections between processes.
 #
 # on_worker_boot do
