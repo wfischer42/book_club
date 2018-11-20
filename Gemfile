@@ -41,7 +41,6 @@ group :development, :test do
   gem 'pry'
   gem 'shoulda-matchers', '~> 3.1'
 end
-gem 'faker'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
