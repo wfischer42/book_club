@@ -13,7 +13,7 @@ port        ENV.fetch("PORT") { 3000 }
 
 # Specifies the `environment` that Puma will run in.
 #
-environment ENV.fetch("RAILS_ENV") { "development" }
+environment ENV.fetch("RAILS_ENV") { "production" }
 
 # Specifies the number of `workers` to boot in clustered mode.
 # Workers are forked webserver processes. If using threads and workers together
@@ -30,7 +30,7 @@ environment ENV.fetch("RAILS_ENV") { "development" }
 # you need to make sure to reconnect any threads in the `on_worker_boot`
 # block.
 #
-preload_app!
+# preload_app!
 
 # If you are preloading your application and using Active Record, it's
 # recommended that you close any connections to the database before workers
@@ -44,7 +44,7 @@ preload_app!
 # clustered mode by specifying a number of `workers`. After each worker
 # process is booted, this block will be run. If you are using the `preload_app!`
 # option, you will want to use this block to reconnect to any threads
-# or connections that may have been created at application boot, as Ruby
+# or connections that may have been created at application boot, Ruby
 # cannot share connections between processes.
 #
 # on_worker_boot do
