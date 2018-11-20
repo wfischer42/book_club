@@ -4,9 +4,9 @@ class BooksController < ApplicationController
     good_params = params.permit(:direction, :sort_by)
     @books = Book.with_avg_rating(good_params[:direction], good_params[:sort_by])
     @ordered_books = Book.with_avg_rating("desc", "avg_rating")
-    # three_books = Book.get_three("desc", "avg_rating")
-    @books_top_3 = Book.top_3_reviews
-    @books_bottom_3 = Book.bottom_3_reviews
+    three_books = Book.get_three("desc", "avg_rating")
+    @books_top_3 = three_books.take(3)
+    @books_bottom_3 = three_books.last(3).reverse
     @top_3_reviewers = User.top_three_reviewers
   end
 
