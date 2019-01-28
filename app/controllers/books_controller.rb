@@ -1,7 +1,6 @@
 class BooksController < ApplicationController
 #test
   def index
-    binding.pry
     good_params = params.permit(:direction, :sort_by)
     @books = Book.with_avg_rating(good_params[:direction], good_params[:sort_by])
     @ordered_books = Book.with_avg_rating("desc", "avg_rating")

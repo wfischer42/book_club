@@ -29,6 +29,13 @@ This purpose of this application is for users to browse and review books. The pr
 - all controller and model code must be tested via feature tests and model tests, respectively
 - must use some amount of HTML and CSS layout
 
+## Setup - Terminal Commands
+
+-git clone https://github.com/bdiveley/book_club.git
+-rails db:{drop,create,migrate,seed}
+-rails s
+-visit localhost:3000 in browser 
+
 ### User Stories
 
 ```
